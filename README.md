@@ -11,11 +11,11 @@ errors": [
       
 ## Instalation
 
-`$ npm install`
+`$ npm install server`
 
 Or clonning from repository
 
-`$ git clone url`
+`$ git clone https://github.com/VladElf/server.git`
 
 ## DB Script
 CREATE TABLE [dbo].[Post] (
