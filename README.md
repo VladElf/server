@@ -1,4 +1,4 @@
-### hi I'm working on my first server, with Apollo, GraphQL, with Prisma on DB Sql Server
+### Hi I'm working on my first server, with Apollo, GraphQL, with Prisma on DB Sql Server
 
 I need to start with a simple query but i have an error:
 
@@ -16,6 +16,10 @@ errors": [
 Or clonning from repository
 
 `$ git clone https://github.com/VladElf/server.git`
+
+Important:  You must create a .env file  in the root directory, with url connection.  change your own data in this line of the file:
+
+DATABASE_URL="sqlserver://localhost\instance;database=databasename;user=username;password=yourpass;trustServerCertificate=true"
 
 ## DB Script
 CREATE TABLE [dbo].[Post] (
