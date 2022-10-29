@@ -1,4 +1,4 @@
-### hi m working on my first server, with Apollo, GraphQL, with Prisma on DB Sql Server
+### hi I'm working on my first server, with Apollo, GraphQL, with Prisma on DB Sql Server
 
 I need to start with a simple query but i have an error:
 
