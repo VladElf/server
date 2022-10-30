@@ -11,11 +11,10 @@ errors": [
       
 ## Instalation
 
+`$ git clone https://github.com/VladElf/server.git`
+
 `$ npm install server`
 
-Or clonning from repository
-
-`$ git clone https://github.com/VladElf/server.git`
 
 Important:  You must create a .env file  in the root directory, with url connection.  change your own data in this line of the file:
 
