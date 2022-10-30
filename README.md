@@ -1,13 +1,5 @@
 ### Hi I'm working on my first server, with Apollo, GraphQL, with Prisma on DB Sql Server
 
-I need to start with a simple query but i have an error:
-
-errors": [
-    {
-      "message": "Cannot read properties of undefined (reading 'findMany')",
-      
-      
-      
       
 ## Instalation
 
@@ -52,7 +44,7 @@ ALTER TABLE [dbo].[Post] ADD CONSTRAINT [Post_authorId_fkey] FOREIGN KEY ([autho
 
 ALTER TABLE [dbo].[Profile] ADD CONSTRAINT [Profile_userId_fkey] FOREIGN KEY ([userId]) REFERENCES [dbo].[User]([id]) ON DELETE NO ACTION ON UPDATE CASCADE;
 
-
-
+## run this command after create DB
+`$ npx prisma generate`
 
 ### coud you create a pull request, your help will be great
