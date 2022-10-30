@@ -7,28 +7,39 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Post {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime
-  title     String   @db.VarChar(255)
-  content   String?
-  published Boolean  @default(false)
-  authorId  Int
-  author    User     @relation(fields: [authorId], references: [id])
+model Dept {
+  Deptid   Int        @id(map: "aaaaaDept_PK", clustered: false) @default(autoincrement())
+  DeptName String?    @db.Text
+  Userinfo Employee[]
 }
 
-model Profile {
-  id     Int     @id @default(autoincrement())
-  bio    String?
-  userId Int     @unique
-  user   User    @relation(fields: [userId], references: [id])
+model Item {
+  Itemid   Int      @id(map: "PK_Item") @default(autoincrement())
+  title    String?  @db.NVarChar(50)
+  summary  String?  @db.NVarChar(Max)
+  imageURL String?  @db.NVarChar(Max)
+  active   Boolean?
+  Order    Order[]
 }
 
-model User {
-  id      Int      @id @default(autoincrement())
-  email   String   @unique
-  name    String?
-  post    Post[]
-  profile Profile?
+model Order {
+  Orderid  Int      @id(map: "PK_Order") @default(autoincrement())
+  Userid   String   @db.NVarChar(20)
+  Itemid   Int
+  type     String   @db.NVarChar(50)
+  place    String   @db.NVarChar(50)
+  comments String?  @db.NVarChar(Max)
+  status   String   @db.NVarChar(50)
+  Item     Item     @relation(fields: [Itemid], references: [Itemid], onUpdate: NoAction, map: "FK_Order_Item")
+  Userinfo Employee @relation(fields: [Userid], references: [Userid], onUpdate: NoAction, map: "FK_Order_Userinfo")
+}
+
+model Employee {
+  Userid String  @id(map: "aaaaaUserinfo_PK", clustered: false) @db.NVarChar(20)
+  Name   String? @db.NVarChar(50)
+  Deptid Int?    @default(1, map: "DF__Userinfo__Deptid__17F790F9")
+  Dept   Dept?   @relation(fields: [Deptid], references: [Deptid], onDelete: NoAction, onUpdate: NoAction, map: "FK_Userinfo_Dept")
+  Order  Order[]
+
+  @@map("Userinfo")
 }
