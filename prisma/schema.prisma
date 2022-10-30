@@ -26,6 +26,7 @@ model Order {
   Orderid  Int      @id(map: "PK_Order") @default(autoincrement())
   Userid   String   @db.NVarChar(20)
   Itemid   Int
+  date     DateTime
   type     String   @db.NVarChar(50)
   place    String   @db.NVarChar(50)
   comments String?  @db.NVarChar(Max)
