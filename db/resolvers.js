@@ -18,11 +18,13 @@ const resolvers = {
     },
   },
   Mutation: {
-    createDept: (_, { input }) => {
-      console.log(input);
-      /*  return prisma.dept.create({
-        DeptName,
-      }); */
+    createDept: async (_, { input }) => {
+      const { DeptName } = input;
+      return await prisma.dept.create({
+        data: {
+          DeptName: DeptName,
+        },
+      });
     },
   },
 };

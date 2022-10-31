@@ -30,7 +30,7 @@ input DeptInput {
 #* MUTATIONS *#
 
   type Mutation {
-    createDept(input: DeptInput): String
+    createDept(input: DeptInput): Dept
   }
 `;
 module.exports = typeDefs;
