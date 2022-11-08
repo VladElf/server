@@ -1,8 +1,8 @@
-const { gql } = require('apollo-server');
+import { gql } from 'apollo-server';
 
-const typeDefs = `
+const typeDefs = gql`
   scalar DateTime
-#* TYPES *#
+  #* TYPES *#
 
   type Employee {
     Userid: Int!
@@ -13,65 +13,65 @@ const typeDefs = `
     Deptid: Int!
     DeptName: String!
   }
-  type Item{
-    Itemid:Int!
-    title:String!
-    summary:String
-    imageURL:String
-    active:Boolean
+  type Item {
+    Itemid: Int!
+    title: String!
+    summary: String
+    imageURL: String
+    active: Boolean
   }
-  type Order{
-    Orderid:Int!
-    type:String!
+  type Order {
+    Orderid: Int!
+    type: String!
     date: DateTime!
     place: String!
-    comments:String
-    status:String
+    comments: String
+    status: String
     Employee: Employee
     Item: Item
-
   }
 
-#* QUERIES *#
+  #* QUERIES *#
 
   type Query {
     getEmployees: [Employee]
     getDepts: [Dept]
-    getEmployeesByDept:[Employee]
+    getEmployeesByDept(DeptName: String!): [Employee]
     getItems: [Item]
-    getActiveItems:[Item]
-    getItemByTitle(title:String!):Item
+    getActiveItems: [Item]
+    getItemByTitle(title: String!): Item
     getOrders: [Order]
-    getOrdersByStatus(status:String!):[Order]
-    getOrderByEmployee(Userid:String):Order
+    getOrdersByStatus(status: String!): [Order]
+    getOrderByEmployee(Userid: String): Order
   }
 
-#* INPUTS *#
+  #* INPUTS *#
 
-input DeptInput {
-  DeptName:String!
-}
-input ItemInput{
-  title:String!
-  summary:String
-  imageURL:String
-}
-input OrderInput{
-    type:String!
+  input DeptInput {
+    DeptName: String!
+  }
+  input ItemInput {
+    title: String!
+    summary: String
+    imageURL: String
+    active: Boolean = false
+  }
+  input OrderInput {
+    type: String!
     date: DateTime!
     place: String!
-    comments:String
-    status:String!
+    comments: String
+    status: String = "REQUIRED"
     Userid: String!
     Itemid: Int!
-}
+  }
 
-#* MUTATIONS *#
+  #* MUTATIONS *#
 
   type Mutation {
-    createDept(input: DeptInput): Dept
-    createItem(input:ItemInput):Item
+    createDept(DeptName: String!): Dept
+    createItem(input: ItemInput): Item
     createOrder(input: OrderInput): Order
   }
 `;
-module.exports = typeDefs;
+export default typeDefs;

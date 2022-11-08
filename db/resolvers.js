@@ -1,5 +1,5 @@
-const { PrismaClient } = require('@prisma/client');
-const { GraphQLScalarType } = require('graphql');
+import { PrismaClient } from '@prisma/client';
+import { GraphQLScalarType } from 'graphql';
 
 const dateScalar = new GraphQLScalarType({
   name: 'DateTime',
@@ -15,9 +15,9 @@ const resolvers = {
     getEmployees: () => {
       return prisma.employee.findMany({ include: { Dept: true } });
     },
-    getEmployeesByDept: () => {
+    getEmployeesByDept: (_, args) => {
       return prisma.employee.findMany({
-        where: { Dept: { DeptName: { contains: 'proyectos' } } },
+        where: { Dept: { DeptName: { contains: args.DeptName } } },
         include: { Dept: true },
       });
     },
@@ -26,11 +26,10 @@ const resolvers = {
     },
   },
   Mutation: {
-    createDept: async (_, { input }) => {
-      const { DeptName } = input;
+    createDept: async (_, args) => {
       return await prisma.dept.create({
         data: {
-          DeptName: DeptName,
+          DeptName: args.DeptName,
         },
       });
     },
@@ -60,4 +59,4 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+export default resolvers;
