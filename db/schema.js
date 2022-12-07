@@ -34,9 +34,9 @@ const typeDefs = gql`
   #* QUERIES *#
 
   type Query {
-    getEmployees: [Employee]
+    getEmployees: [Employee!]!
     getDepts: [Dept]
-    getEmployeesByDept(DeptName: String!): [Employee]
+    getEmployeesByDeptid(Deptid: Int!): [Employee]
     getItems: [Item]
     getActiveItems: [Item]
     getItemByTitle(title: String!): Item

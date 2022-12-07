@@ -15,9 +15,9 @@ const resolvers = {
     getEmployees: () => {
       return prisma.employee.findMany({ include: { Dept: true } });
     },
-    getEmployeesByDept: (_, args) => {
+    getEmployeesByDeptid: (_, args) => {
       return prisma.employee.findMany({
-        where: { Dept: { DeptName: { contains: args.DeptName } } },
+        where: { Dept: { Deptid: args.Deptid } },
         include: { Dept: true },
       });
     },
