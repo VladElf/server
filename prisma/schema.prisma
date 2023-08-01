@@ -16,6 +16,7 @@ model Dept {
 model Item {
   Itemid   Int      @id(map: "PK_Item") @default(autoincrement())
   title    String?  @db.NVarChar(50)
+  category String?  @db.NVarChar(50)
   summary  String?  @db.NVarChar(Max)
   imageURL String?  @db.NVarChar(Max)
   active   Boolean?
