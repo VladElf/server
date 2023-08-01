@@ -24,6 +24,9 @@ const resolvers = {
     getDepts: () => {
       return prisma.dept.findMany();
     },
+    getItems: () => {
+      return prisma.item.findMany();
+    },
   },
   Mutation: {
     createDept: async (_, args) => {
@@ -34,10 +37,11 @@ const resolvers = {
       });
     },
     createItem: async (_, { input }) => {
-      const { title, summary, imageURL } = input;
+      const { title, category, summary, imageURL } = input;
       return await prisma.item.create({
         data: {
           title: title,
+          category: category,
           summary: summary,
           imageURL: imageURL,
         },
