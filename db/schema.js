@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server';
+import { gql } from 'apollo-server-express';
 
 const typeDefs = gql`
   scalar DateTime
@@ -16,6 +16,7 @@ const typeDefs = gql`
   type Item {
     Itemid: Int!
     title: String!
+    category: String
     summary: String
     imageURL: String
     active: Boolean
@@ -29,6 +30,9 @@ const typeDefs = gql`
     status: String
     Employee: Employee
     Item: Item
+  }
+  type File {
+    url: String!
   }
 
   #* QUERIES *#
@@ -52,6 +56,7 @@ const typeDefs = gql`
   }
   input ItemInput {
     title: String!
+    category: String
     summary: String
     imageURL: String
     active: Boolean = false
@@ -72,6 +77,7 @@ const typeDefs = gql`
     createDept(DeptName: String!): Dept
     createItem(input: ItemInput): Item
     createOrder(input: OrderInput): Order
+    uploadFile(file: Upload): String
   }
 `;
 export default typeDefs;
