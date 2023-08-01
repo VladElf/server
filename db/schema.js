@@ -31,9 +31,6 @@ const typeDefs = gql`
     Employee: Employee
     Item: Item
   }
-  type File {
-    url: String!
-  }
 
   #* QUERIES *#
 
@@ -77,7 +74,6 @@ const typeDefs = gql`
     createDept(DeptName: String!): Dept
     createItem(input: ItemInput): Item
     createOrder(input: OrderInput): Order
-    uploadFile(file: Upload): String
   }
 `;
 export default typeDefs;
